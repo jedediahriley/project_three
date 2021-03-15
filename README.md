@@ -4,7 +4,9 @@
 
 [GitHub repository](https://github.com/jedediahriley/project_three)
 
-[Heroku site](https://dashboard.heroku.com/apps)
+[Heroku deployment site](https://dashboard.heroku.com/apps)
+
+[Trello progress](https://trello.com/b/VFyqkoXg/kanban-board)
 
 ## The Project
 The object of this project is to develop a full-stack application that will enable a company to:
@@ -28,7 +30,7 @@ Trello will be used to gauge progress of the project.
 
 
 ## Team
-This will be a group project that will showcase the ability to collaborate as a team in the development of the application.  Team members and their initial respective development areas are:
+This will be a group project that will showcase the ability of team members to collaborate in the development of the application.  Team members and their respective development areas are:
 
 + Jedediah Riley
     + GitHub management
