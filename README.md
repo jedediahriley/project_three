@@ -27,7 +27,7 @@ This project will use the following technologies:
 - Framebox for wireframing.
 - CSS - TBD.
 
-### Trello
+#### Trello
 Trello will be used to gauge progress of the project.
 ![](./assets/images/trello-first-image.png)
 
@@ -91,6 +91,8 @@ As a site administrator, I will be able to:
 
 ### Admin View
 ![](./assets/images/admin-view-1.png)
+![](./assets/images/admin-view-add.png)
+![](./assets/images/admin-view-show.png)
 
 ### User Views
 ![](./assets/images/user-view-1.png)
