@@ -23,11 +23,13 @@ This project will use the following technologies:
 - Authorization functionality, with encrypted password and authorization flow.
 - GitHub for version control.
 - Online deployment via Heroku.
+- Trello for project management
+- Framebox for wireframing.
+- CSS - TBD.
 
 ### Trello
 Trello will be used to gauge progress of the project.
 ![](./assets/images/trello-first-image.png)
-
 
 ## Team
 This will be a group project that will showcase the ability of team members to collaborate in the development of the application.  Team members and their respective development areas are:
@@ -35,6 +37,7 @@ This will be a group project that will showcase the ability of team members to c
 + Jedediah Riley
     + GitHub management
     + Heroku deployment
+    + Wireframing
     + CSS styling
     + Middleware
 
@@ -50,7 +53,7 @@ This will be a group project that will showcase the ability of team members to c
 # User Types and Access levels
 There will be two type of users for this app. The types of users and the user's authorization levels are as follows:
 - End User - Read and Update
-- Site Admin - Create, Update, Read and Delete
+- Site Administrator - Create, Update, Read and Delete
 
 ## User Stories
 
@@ -71,7 +74,7 @@ As a site administrator, I will be able to:
 - create new equipment
 - accept equipment or reject it due to damage
 - include a picture of the equipment
-- add a unique tag to identify the equipment
+- add a tag number to identify the equipment
 - indicate the vendor from whom the equipment was purchased
 - indicate the equipment's purchase order number
 - indicate the location where the equipment will be warehoused
@@ -81,6 +84,18 @@ As a site administrator, I will be able to:
 - give instructions as to the type of maintenance that will be needed.
 - log out of my account
 
+## Wireframing
 
+### Log-in
+![](./assets/images/mep-login.png)
 
+### User Views
+![](./assets/images/user-view-1.png)
+![](./assets/images/user-view-1a.png)
+![](./assets/images/user-view-1b.png)
+![](./assets/images/user-view-1c.png)
 
+## Name Convention and Coding Style
+- All caps for global variables
+- Double quotes
+- Location of commas - TBD
