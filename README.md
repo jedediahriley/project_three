@@ -89,6 +89,9 @@ As a site administrator, I will be able to:
 ### Log-in
 ![](./assets/images/mep-login.png)
 
+### Admin View
+[](./assets/images/admin-view-1.png)
+
 ### User Views
 ![](./assets/images/user-view-1.png)
 ![](./assets/images/user-view-1a.png)
