@@ -1,6 +1,6 @@
 import React from "react"
 import "./App.css"
-import Routes from "./Routes"
+import Routes from "./Routes.jsx"
 
 
 class App extends React.Component {
@@ -19,7 +19,7 @@ class App extends React.Component {
         })
     }
 
-    render() {    
+    render() {
         return(
             <div>
                 <h1>Material / Equipment Preservation</h1>
