@@ -4,15 +4,9 @@ import history from "./utils/history"
 
 import Login from "./components/Login"
 import Search from "./components/Search"
-import AdminMain from "./components/Admin_User/Main"
-import QCMain from "./components/QC_User/Main"
+import Main from "./components/Main"
 
 class Routes extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-
     render() {
         const { currentUser, userRole } = this.props
         return(
@@ -21,11 +15,11 @@ class Routes extends React.Component {
                         <Switch>
                             <Route path="/main">
                                 {userRole === "Tech" && <Search />}
-                                {userRole === "Admin" && <AdminMain />}
-                                {userRole === "QC" && <QCMain />}
+                                {userRole !== "Tech" && <Main userRole={userRole} />}
+                                {/* {userRole === "QC" && <Main userRole={this.props.userRole} />} */}
                             </Route>
                             <Route path="/search" component={Search} />
-                            <Route path="/equipment" component={Equipment} />
+                            {/* <Route path="/equipment" component={Equipment} /> */}
 
                             {/* Default path takes user to login screen */}
                             <Route path="/" component={Login} />
