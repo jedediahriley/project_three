@@ -12,6 +12,7 @@ const PORT = 3003;
 APP.use(express.json());
 
 
+
 // DATABASE ERROR - DISCONNECTION
 mongoose.connection.on('error', err => console.log(err.message + ' is Mongod not running?'))
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'))
@@ -25,11 +26,13 @@ mongoose.connection.once('open', ()=>{
 
 
 // CONTROLLER - ROUTERS
-const mepController = require('./controllers/mep.js');
-APP.use('/mep', mepController);
+const equipmentController = require('./controllers/equipment.js');
+const userController = require('./controllers/user.js');
+APP.use("/equipment", equipmentController);
+APP.use("/user", userController);
 
 
 // LISTENER
 APP.listen(PORT, () => {
-  console.log('listening to MEP server on ', PORT)
+  console.log('listening to EQUIPMENT server on ', PORT)
 })
