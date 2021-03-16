@@ -16,7 +16,7 @@ class Main extends React.Component {
                     <button onClick={() => history.push("/add_administrator")} >Add Administrator</button>
                 }
             </div>
-        )    
+        )
     }
 }
 
