@@ -1,6 +1,7 @@
 // DEPENDENCIES
 const express = require('express');
 const mongoose = require('mongoose')
+const cors = require("cors")
 
 
 // DEPENDENCIES CONFIGURATIONS
@@ -9,6 +10,18 @@ const PORT = 3003;
 
 
 // MIDDLEWARE
+const whitelist = ['http://localhost:3000']
+const corsOptions = {
+  origin: function (origin, callback) {
+    if(whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+
+APP.use(cors(corsOptions))
 APP.use(express.json());
 
 
