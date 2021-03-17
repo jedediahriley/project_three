@@ -15,28 +15,26 @@ const MONGODB_URI = process.env.MONGODBURI || "mongodb://localhost:27017/" + DB_
 
 
 // CONTROLLERS
-const sessionsController = require("/.controllers/session_controller");
+const sessionsController = require("./controllers/sessions_controller");
 
 
 // MIDDLEWARE
-// const whitelist = ['http://localhost:3003', 'http://localhost:3000' ];
+const whitelist = ['http://localhost:3000' ];
 
-// const corsOptions = {
-//   origin: function (origin, callback) {
-//     console.log(origin)
-//     if(whitelist.indexOf(origin) !== -1) {
-//       callback(null, true)
-//     } else {
-//       callback(new Error("Not allowed by CORS"))
-//     };
-//   }
-// };
+const corsOptions = {
+  origin: function (origin, callback) {
+    // console.log(origin)
+    if(whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error("Not allowed by CORS"))
+    };
+  }
+};
 
-// APP.use(cors(corsOptions));
+APP.use(cors(corsOptions));
 
 APP.use(cookieParser (process.env.SECRET));
-
-console.log(process.env);
 
 APP.use(session({
   secret: process.env.SECRET,
@@ -70,8 +68,8 @@ mongoose.connection.once("open", ()=>{
 
 
 // CONTROLLER - ROUTERS
-const equipmentController = require("./controllers/equipment.js");
-const userController = require('./controllers/user.js');
+const equipmentController = require("./controllers/equipment");
+const userController = require('./controllers/user');
 APP.use("/equipment", equipmentController);
 APP.use("/user", userController);
 
