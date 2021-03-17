@@ -1,35 +1,53 @@
 import React from "react"
+import bcrypt from "bcryptjs"
+import history from "../utils/history.js"
+import { authenticationService } from "../services/authentication.service.js"
 
-let baseURL = ""
+// let baseURL = ""
 
-if (process.env.NODE_ENV === "development") {
-  baseURL = "http://localhost:3003"
-} else {
-  baseURL = ""
-}
+// if (process.env.NODE_ENV === "development") {
+//   baseURL = "http://localhost:3003"
+// } else {
+//   baseURL = ""
+// }
 
 class Login extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            email: "",
+            username: "",
             password: ""
+        }
+
+        if (authenticationService.currentUserValue) {
+            history.push("/main")
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    loginUser( credentials ) {
-        fetch(baseURL + "/login", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(credentials)
-        })
-        .then(data => data.json())
-        .catch(error => console.log(error))
+    loginUser(username, password) {
+        authenticationService.login(username, password)
+            .then(
+                user => {
+                    const {from} = this.props.location.state || {from: {pathname: "/"}}
+                    history.push(from)
+                },
+                error => {
+                    console.log(error)
+                }
+            )
+        
+        // fetch(baseURL + "/login", {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-type": "application/json"
+        //     },
+        //     body: JSON.stringify(credentials)
+        // })
+        // .then(data => data.json())
+        // .catch(error => console.log(error))
     }
 
     handleChange(event) {
@@ -38,7 +56,9 @@ class Login extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault()
-        console.log('login form submitted')
+        const username = this.state.username
+        const password = bcrypt.hashSync(this.state.password, bcrypt.genSaltSync(10))
+        this.loginUser(username, password)
 
     }
 

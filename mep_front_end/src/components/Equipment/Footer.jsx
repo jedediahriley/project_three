@@ -1,4 +1,5 @@
 import React from "react"
+import history from "../../utils/history.js"
 
 class Footer extends React.Component {
     constructor(props) {
@@ -21,10 +22,10 @@ class Footer extends React.Component {
         console.log(this.props)
         let newView = "show"
         this.props.handleEditClick(newView)
+        history.goBack()
     }
 
     render() {
-        // console.log(this.props)
         let view = this.props.view
         console.log(this.props)
         return(
@@ -47,7 +48,7 @@ class Footer extends React.Component {
                     <input type="textarea" name="vendor-address" id="vendor-address" readOnly={view === "show"} />
 
                     {view === "show"
-                        ? 
+                        ?
                         <button onClick={this.handleStartEdit}>Edit Equipment</button>
                         :
                         <div>

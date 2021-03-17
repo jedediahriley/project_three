@@ -1,5 +1,5 @@
 import React from "react"
-import history from "../utils/history"
+import history from "../utils/history.js"
 import bcrypt from "bcryptjs"
 
 let baseURL = ""
@@ -24,18 +24,6 @@ class Signup extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    newUser( credentials ) {
-        fetch(baseURL + "/login", {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json"
-            },
-            body: JSON.stringify(credentials)
-        })
-        .then(data => data.json())
-        .catch(error => console.log(error))
-    }
-
     handleChange(event) {
         this.setState({ [event.currentTarget.id]: event.currentTarget.value })
     }
@@ -48,7 +36,7 @@ class Signup extends React.Component {
             method: "POST",
             body: JSON.stringify({
                 name: this.state.name,
-                userName: this.state.userName,
+                username: this.state.username,
                 password: bcrypt.hashSync(this.state.password, bcrypt.genSaltSync(10)),
                 userRole: this.state.userRole
             }),
@@ -68,8 +56,8 @@ class Signup extends React.Component {
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor="name">Full Name: </label>
                 <input type="text" name="name" id="name" placeholder="John Doe" onChange={this.handleChange} />
-                <label htmlFor="userName">Username: </label>
-                <input type="userName" id="userName" name="userName" placeholder="username" onChange={this.handleChange} />
+                <label htmlFor="username">Username: </label>
+                <input type="username" id="username" name="username" placeholder="username" onChange={this.handleChange} />
                 <label htmlFor="password">Password: </label>
                 <input type="password" id="password" name="password" placeholder="password" onChange={this.handleChange} />
                 <select

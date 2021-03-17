@@ -1,5 +1,5 @@
 import React from "react"
-import history from "../../utils/history"
+import history from "../../utils/history.js"
 
 class Header extends React.Component {
     render() {

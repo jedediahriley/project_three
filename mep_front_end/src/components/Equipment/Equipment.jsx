@@ -7,7 +7,8 @@ class Equipment extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            view: this.props.view
+            view: this.props.view,
+            instructions: []
         }
 
         this.handleEditClick = this.handleEditClick.bind(this)
@@ -21,7 +22,7 @@ class Equipment extends React.Component {
         })
     }
 
-
+    
 
     // getEquipmentObject(view, equipObjectID) {
     //     if(view === "new") {

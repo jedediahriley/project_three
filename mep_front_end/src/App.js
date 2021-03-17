@@ -1,6 +1,10 @@
 import React from "react"
 import "./App.css"
-import Routes from "./Routes.jsx"
+import { Router } from "react-router-dom"
+import Routes from "./components/Routes.jsx"
+import history from "./utils/history.js"
+// import { Redirect } from "react-router-dom"
+import { authenticationService } from "./services/authentication.service"
 
 
 class App extends React.Component {
@@ -8,15 +12,20 @@ class App extends React.Component {
         super(props)
         this.state = {
             currentUser: null,
-            userRole: null
+            userRole: ""
         }
     }
 
     componentDidMount() {
-        this.setState({
-            currentUser: "x",
-            userRole: "Admin"
-        })
+        console.log('App mounted')
+        if (!this.state.currentUser) {
+            history.push("/")
+        }
+
+        authenticationService.currentUser.subscribe(user => this.setState({
+            currentUser: user,
+            userRole: user.userRole
+        }))
     }
 
     render() {
