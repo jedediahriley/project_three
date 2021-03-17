@@ -26,10 +26,10 @@ SESSION.post('/', (req, res) => {
     })
 })
 
-SESSIONS.delete('/', (req, res) => {
+SESSION.delete('/', (req, res) => {
     req.session.destroy(() => {
     res.redirect('/main')                                               //////HERE////// redirect? how does that work with REACT?
   })
 })
 
-module.exports = SESSIONS
+module.exports = SESSION

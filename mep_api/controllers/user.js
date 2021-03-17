@@ -5,7 +5,7 @@ const User = require("../models/user.js");
 
 
 USER.post("/", async (req, res) => {
-    req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))    ////////HERE///////
+    // req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))    ////////HERE///////
     User.create(req.body, (error, createdUser) => {
         console.log("user is created", createdUser)
     if (error) {
@@ -26,9 +26,9 @@ USER.get("/", (req, res) => {
 });
 
 
-USER.get("/new", (req,res) => {
-    res.render(/user/new.js)
-})                                         
+// USER.get("/new", (req,res) => {
+//     res.render(/user/new.js)
+// })                                         
 
 
 USER.delete("/:id", (req, res) => {

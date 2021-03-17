@@ -6,3 +6,5 @@ const isAuthenticated = (req, res, next) => {
         res.redirect("/sessions/new")
     }
 }
+
+module.exports = isAuthenticated
