@@ -1,7 +1,7 @@
 const express = require("express");
 const EQUIPMENT = express.Router();
 const Equipment = require("../models/equipment.js");
-const isAuthenticated = require("../services/authentication_services")
+const isAuthenticated = require("../services/authentication.service")
 
 
 // MIDDLEWARE
