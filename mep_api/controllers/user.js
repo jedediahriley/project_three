@@ -1,4 +1,3 @@
-const bcrypt = require("bcrypt");
 const express = require("express");
 const USER = express.Router();
 const User = require("../models/user.js");
@@ -14,6 +13,37 @@ USER.post("/", async (req, res) => {
     res.status(200).send(createdUser);
     });
 });
+
+
+// move this route to middleware as a function
+USER.post("/authenticate", (req, res) => {
+    const params = JSON.parse(req.body)
+    const user = User.find(user => user.username === params.username && user.password === params.password)
+    if (!user) {
+        return error('Username or password is incorrect')
+    }
+    return ok({
+        id: user._id,
+        name: user.name,
+        username: user.username,
+        password: user.password,
+        userRole: user.userRole
+        
+    })
+
+    function ok(body) {
+        resolve({ok: true, text: () => Promise.resolve(JSON.stringify(body)) })
+    }
+
+    function unauthorized() {
+        resolve({ status: 401, text: () => Promise.resolve(JSON.stringify({ message: "Unauthorized" })) })
+    }
+
+    function error(message) {
+        resolve({ status: 400, text: () => Promise.resolve(JSON.stringify({ message })) })
+    }
+    
+})
 
 
 USER.get("/", (req, res) => {

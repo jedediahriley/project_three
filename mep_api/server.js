@@ -1,26 +1,33 @@
+// ==============================================================
 // DEPENDENCIES
+// ==============================================================
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session") 
 const cookieParser = require("cookie-parser")
+
 require("dotenv").config();  
 
-
-// DEPENDENCIES CONFIGURATIONS
+// ==============================================================
+// SERVER CONFIGURATION
+// ==============================================================
 const APP = express();
-const PORT = process.env.PORT || 3003;                
+const PORT = process.env.PORT
 const DB_NAME = "mep"
-const MONGODB_URI = process.env.MONGODBURI || "mongodb://localhost:27017/" + DB_NAME   
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/" + DB_NAME   
 
-
+// ==============================================================
 // CONTROLLERS
+// ==============================================================
 const sessionsController = require("./controllers/sessions_controller");
+const equipmentController = require("./controllers/equipment");
+const userController = require('./controllers/user');
 
-
+// ==============================================================
 // MIDDLEWARE
+// ==============================================================
 const whitelist = ['http://localhost:3000' ];
-
 const corsOptions = {
   origin: function (origin, callback) {
     // console.log(origin)
@@ -33,48 +40,44 @@ const corsOptions = {
 };
 
 APP.use(cors(corsOptions));
-
+APP.use(express.json());
 APP.use(cookieParser (process.env.SECRET));
-
 APP.use(session({
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false
 }));
-APP.use(express.json());
-APP.use("sessions", sessionsController)
 
+APP.use("/sessions", sessionsController)
+APP.use("/equipment", equipmentController);
+APP.use("/user", userController);
 
-
-// DATABASE ERROR - DISCONNECTION
-mongoose.connection.on("error", err => console.log(err.message + " is Mongod not running? "));
-mongoose.connection.on("disconnected", () => console.log("mongo disconnected"));
-
-
-// DATABASE CONNECTION
+// ==============================================================
+// DATABASE CONFIGURATION
+// ==============================================================
 mongoose.connect(MONGODB_URI, 
   {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true
   }
-  , () => {
-    console.log("the connection with mongod is established at: ", MONGODB_URI )
+  ,() => {
+    console.log("the connection with mongod is established at:", MONGODB_URI )
   }
-  );    
+);
 mongoose.connection.once("open", ()=>{
   console.log("connected to mongoose...")
 });
 
+// ==============================================================
+// DATABASE ERROR - DISCONNECTION
+// ==============================================================
+mongoose.connection.on("error", err => console.log(err.message + " is Mongod not running? "));
+mongoose.connection.on("disconnected", () => console.log("mongo disconnected"));
 
-// CONTROLLER - ROUTERS
-const equipmentController = require("./controllers/equipment");
-const userController = require('./controllers/user');
-APP.use("/equipment", equipmentController);
-APP.use("/user", userController);
-
-
+// ==============================================================
 // LISTENER
+// ==============================================================
 APP.listen(PORT, () => {
-  console.log("listening to EQUIPMENT server on ", PORT);
+  console.log("listening to M/EP server on port", PORT);
 });

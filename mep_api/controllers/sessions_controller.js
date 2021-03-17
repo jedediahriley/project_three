@@ -4,7 +4,7 @@ const SESSION = express.Router()
 const User = require('../models/user.js')
 
 SESSION.get('/new', (req, res) => {
-    res.redirect("/")
+    res.redirect("/", {currentUser: req.session.currentUser})
 })
 
 SESSION.post('/', (req, res) => {
