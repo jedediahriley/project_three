@@ -1,4 +1,6 @@
 import React from "react"
+import history from "../utils/history"
+import bcrypt from "bcryptjs"
 
 let baseURL = ""
 
@@ -47,7 +49,7 @@ class Signup extends React.Component {
             body: JSON.stringify({
                 name: this.state.name,
                 userName: this.state.userName,
-                password: this.state.password,
+                password: bcrypt.hashSync(this.state.password, bcrypt.genSaltSync(10)),
                 userRole: this.state.userRole
             }),
             headers: {
@@ -57,13 +59,7 @@ class Signup extends React.Component {
         .then(res => res.json())
         .then(resJson => {
             console.log(resJson)
-            this.setState({
-                name: "",
-                userName: "",
-                password: "",
-                userRole: ""
-            })
-            
+            history.push("/main")            
         })
     }
 
@@ -83,9 +79,9 @@ class Signup extends React.Component {
                     ref={ref => {
                         this.select = ref
                     }}
-                    value={this.state.value}
+                    defaultValue={""}
                 >
-                    <option value="" disabled selected>Choose user level</option>
+                    <option value="" disabled hidden>Choose user level</option>
                     <option value="Tech">Tech</option>
                     <option value="Admin">Admin</option>
                     <option value="QC">Quality Control</option>
