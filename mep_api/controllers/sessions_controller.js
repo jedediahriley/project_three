@@ -18,7 +18,7 @@ SESSION.post('/', (req, res) => {
     } else {
         if (bcrypt.compareSync(req.body.password, foundUser.password)) {
         req.session.currentUser = foundUser
-        res.redirect('/main')                                           //////HERE////// redirect? how does that work with REACT?
+        res.redirect('/main')
         } else {
         res.send('<a href="/"> Invalid password </a>')
         }
@@ -28,7 +28,7 @@ SESSION.post('/', (req, res) => {
 
 SESSION.delete('/', (req, res) => {
     req.session.destroy(() => {
-    res.redirect('/main')                                               //////HERE////// redirect? how does that work with REACT?
+    res.redirect('/main') 
   })
 })
 
