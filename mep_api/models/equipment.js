@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose")
 
 const equipmentSchema = mongoose.Schema({
     name: {type: String, required: true},
@@ -19,6 +19,6 @@ const equipmentSchema = mongoose.Schema({
     vendorContact: String,
     vendorAddress: String,
     maintenance: {type: [mongoose.Schema.Types.ObjectId]}
-})
+});
 
-module.exports = mongoose.model('equipment', equipmentSchema)
+module.exports = mongoose.model("equipment", equipmentSchema);
